@@ -1,0 +1,11 @@
+<form class="container" [formGroup]="binForm">
+    <h4>Create code snippet - codeBin</h4> <br>
+    <h5 class="red-text" [hidden]="title.valid || title.untouched"> Title is required </h5>
+    <input type="text" placeholder="Title" [formControl]="title">
+
+    <h5 class="red-text" [hidden]="code.valid || code.untouched"> Code is required </h5>
+    <textarea placeholder="code snippet" [formControl]="code" rows="8"></textarea>
+
+    <button (click)="save()" class="btn-red" [disabled]="binForm.invalid" > Submit </button>
+    <!-- <button (click)="reset()" class="btn-green" style="margin: 0px 10px" > Reset </button> -->
+</form>
