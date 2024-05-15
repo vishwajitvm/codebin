@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .error-box {
+    text-align: center;
+  }
+  
+  .error-code {
+    font-size: 8em;
+    margin-bottom: 20px;
+    color: #e74c3c;
+  }
+  
+  .error-message {
+    font-size: 1.5em;
+    color: #34495e;
+    margin-bottom: 40px;
+  }
+  
+  .astronaut {
+    width: 150px;
+    height: auto;
+    animation: floatAstronaut 3s ease-in-out infinite alternate;
+  }
+  
+  @keyframes floatAstronaut {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-20px);
+    }
+  }
