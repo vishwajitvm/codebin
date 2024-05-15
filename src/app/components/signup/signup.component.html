@@ -1,0 +1,11 @@
+<form class="container" #registerForm="ngForm" >
+    <h4>Signup</h4>
+    <h5 class="red-text" [hidden]="email.valid || email.untouched"> Enter correct Email </h5>
+    <input type="email" placeholder="Email" required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" ngModel name="email" #email="ngModel">
+
+    <!-- <h5 class="red-text" > Enter correct password </h5> -->
+    <input type="password" placeholder="Password" required minlength="6" ngModel name="password" #password="ngModel" >
+
+    <button  class="btn-red" (click)="register(registerForm)" [disabled]="registerForm.invalid" > Signup </button>
+    <button  class="btn-green" (click)="reset(registerForm)" style="margin: 0px 10px" > Reset </button>
+</form>
