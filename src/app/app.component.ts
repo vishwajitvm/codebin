@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { firebaseConfig } from '../../firebaseconfig';
+import { firebaseConfig } from '../../firebaseConfig';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
