@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { getFirestore, collection, addDoc, getDocs, DocumentData, getDoc, doc } from "firebase/firestore";
 import { AuthService } from './auth.service';
+import { Snippet } from '../../models/snippet';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class DbService {
   }
 
   //POST - CREATE SNIPPET
-  async createSnippet(snippet:{ title: string , code: string }) {
+  async createSnippet(snippet:Snippet) {
     try {
       // const docRef = await addDoc(collection(this.db, "snippets"), {
       //   first: "Ada",
