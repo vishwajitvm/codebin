@@ -8,6 +8,7 @@
 
 # Node
 /node_modules
+/firebaseConfig.ts
 npm-debug.log
 yarn-error.log
 
