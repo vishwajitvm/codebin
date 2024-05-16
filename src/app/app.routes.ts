@@ -15,7 +15,7 @@ export const routes: Routes = [
     { path: 'create', loadComponent: () => import('./components/create-bin/create-bin.component').then(mod => mod.CreateBinComponent), canActivate: [authGuard] },
     // { path: '' , redirectTo: '/login', pathMatch:"full" }, //if we go to empty home page than it will redirect us to login page
     { path: '', component: HomeComponent },
-    { path: '/snippet/:id', component: ViewSnippetComponent },
+    { path: 'snippet/:id', component: ViewSnippetComponent },
     { path: '**', component: NotFoundComponent }, //redirecting 404 page
 
 ];
