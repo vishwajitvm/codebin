@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { getFirestore, collection, addDoc, getDocs, DocumentData, getDoc, doc } from "firebase/firestore";
 import { AuthService } from './auth.service';
 import { Snippet } from '../../models/snippet';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DbService {
   private db?:any ;
-  constructor(private authService:AuthService) {
+  constructor(private authService:AuthService , private router:Router) {
     this.db = getFirestore()
   }
 
@@ -25,6 +26,7 @@ export class DbService {
         by: this.authService.getUID()
       });
       console.log("Document written with ID: ", docRef.id);
+      this.router.navigate(['/']) 
     } catch (e) {
       console.error("Error adding document: ", e);
       alert("Somthing went wrong while creating code snippet!")
