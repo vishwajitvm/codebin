@@ -1,14 +1,29 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged  } from "firebase/auth";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  constructor(private router:Router) { }
+  private uid?:string ;
+  constructor(private router: Router) {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const uid = user.uid;
+        this.uid = uid ;
+        console.log("user is already loged in" , user.email)
+      } else {
+        // User is signed out
+        this.uid = undefined ;
+        console.log("user is logged out")
+      }
+    });
+  }
 
   // REGISTER USER USING FIREBASE
   registerUser(email: string, password: string) {
@@ -31,7 +46,7 @@ export class AuthService {
   }
 
   //LOGIN USER SUING FIREBASE
-  login(email: string, password: string) {
+  loginUser(email: string, password: string) {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -46,9 +61,19 @@ export class AuthService {
         const errorMessage = error.message;
         console.log("errorCode - auth login" , errorCode) ;
         console.log("errorMessage - auth login" , errorMessage) ;
-        alert("Somthing went wrong while Login, try again")
+        alert(errorCode)
 
       });
+  }
+
+  //LOGOUT USER
+  logout() {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      // Sign-out successful.
+    }).catch((error) => {
+      console.log("Logout failed due to some issue , try again") ;
+    });
   }
 
 }

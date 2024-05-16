@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +11,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  constructor(private router:Router , private authService:AuthService) { }
+
   email = new FormControl("" , [
     Validators.required,
     Validators.email
@@ -25,7 +29,9 @@ export class LoginComponent {
   });
 
   login() {
-    console.log("loginForm" , this.loginForm)
+    console.log("loginForm" , this.loginForm.value.email);
+    this.authService.loginUser(this.loginForm.value.email! , this.loginForm.value.password! ) // exclation(!) means this will exist for sure in parameter
+
   }
 
   reset() {
