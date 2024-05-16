@@ -76,4 +76,14 @@ export class AuthService {
     });
   }
 
+  //IS AUTHENTICATED
+  isAuthenticated() {
+    return this.uid ? true : false ;
+  }
+
+  //GET USER UNIQUE ID
+  getUID() {
+    return this.uid ? this.uid : null ;
+  }
+
 }
