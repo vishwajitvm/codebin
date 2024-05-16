@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 
@@ -7,7 +8,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } f
 })
 export class AuthService {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   // REGISTER USER USING FIREBASE
   registerUser(email: string, password: string) {
@@ -17,6 +18,8 @@ export class AuthService {
         // Signed up 
         const user = userCredential.user;
         console.log("user register" , user) ;
+        //navigating to home page
+        this.router.navigate(["/"]) ;
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -35,6 +38,8 @@ export class AuthService {
         // Signed in 
         const user = userCredential.user;
         console.log("user login" , user) ;
+        //navigating to home page
+        this.router.navigate(["/"]) ;
       })
       .catch((error) => {
         const errorCode = error.code;
