@@ -25,10 +25,14 @@ export class CreateBinComponent {
     code: this.code
   });
 
-  async save() {
-    console.log("save" , this.binForm) ;
-    this.binForm.reset() ;
-    await this.dbService.createSnippet(this.binForm.value as Snippet) ;
+  // save() {
+  //   console.log("save" , this.binForm) ;
+  //   this.binForm.reset() ;
+  //   this.dbService.createSnippet(this.binForm.value as Snippet) ;
+  // }
+
+  async save(){
+    await this.dbService.createSnippet(this.binForm.value as Snippet)
   }
 
   reset() {

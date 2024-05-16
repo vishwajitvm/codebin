@@ -14,24 +14,38 @@ export class DbService {
   }
 
   //POST - CREATE SNIPPET
-  async createSnippet(snippet:Snippet) {
+  async createSnippet(snippet: Snippet) {
     try {
-      // const docRef = await addDoc(collection(this.db, "snippets"), {
-      //   first: "Ada",
-      //   last: "Lovelace",
-      //   born: 1815
-      // });
       const docRef = await addDoc(collection(this.db, "snippets"), {
         ...snippet,
         by: this.authService.getUID()
       });
       console.log("Document written with ID: ", docRef.id);
-      this.router.navigate(['/']) 
+      this.router.navigate(["/"])
+      
     } catch (e) {
       console.error("Error adding document: ", e);
-      alert("Somthing went wrong while creating code snippet!")
+      alert("error while creating")
     }
   }
+  // async createSnippet(snippet: Snippet) {
+  //   try {
+  //     // const docRef = await addDoc(collection(this.db, "snippets"), {
+  //     //   first: "Ada",
+  //     //   last: "Lovelace",
+  //     //   born: 1815
+  //     // });
+  //     const docRef = await addDoc(collection(this.db, "snippets"), {
+  //       ...snippet,
+  //       by: this.authService.getUID()
+  //     });
+  //     console.log("Document written with ID: ", docRef.id);
+  //     this.router.navigate(['/']) 
+  //   } catch (e) {
+  //     console.error("Error adding document: ", e);
+  //     alert("Somthing went wrong while creating code snippet!")
+  //   }
+  // }
 
   //GET - method to retrieve the entire collection
   async getAllSnippet() {
